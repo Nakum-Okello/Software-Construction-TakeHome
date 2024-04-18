@@ -74,7 +74,7 @@ class CheckoutControllerTest {
 		Customer customer = new Customer(1L, "Ognjen", "Andjelic", "Serbia", "NN 10", "Belgrade", "11000", "123",
 				"mail@example.com");
 		List<Book> cart = new ArrayList<>();
-		Book book = new Book(1L, "The Lorde of the Rings", new BigDecimal(100), "J. R. R. Tolkien", "978-0-261-10320-7",
+		Book book = new Book(1L, "The Lord of the Rings", new BigDecimal(100), "J. R. R. Tolkien", "978-0-261-10320-7",
 				"Allen & Unwin", LocalDate.now());
 		cart.add(book);
 		String expectedView = "redirect:/cart";
@@ -109,8 +109,7 @@ class CheckoutControllerTest {
 		when(shoppingCartService.getCart()).thenReturn(cart);
 
 		RedirectAttributes redirect = mock(RedirectAttributes.class);
-		@SuppressWarnings("null")
-		BindingResult bindingResult = new BeanPropertyBindingResult(null, null);
+		BindingResult bindingResult = new BeanPropertyBindingResult(customer, "customer");
 		bindingResult.addError(error);
 		String result = checkoutController.placeOrder(customer, bindingResult, redirect);
 
